@@ -1,6 +1,6 @@
 package GoGoEat;
 
-public class Admin implements UserType {
+public class Admin {
 
     private final String adminId = "A0001";
     private final String adminUsername = "Admin";
@@ -15,12 +15,12 @@ public class Admin implements UserType {
         return instance;
     }
 
-    @Override
+    // @Override
     public String getUsername() {
         return adminUsername;
     }
 
-    @Override
+    // @Override
     public String getUserId() {
         return adminId;
     }

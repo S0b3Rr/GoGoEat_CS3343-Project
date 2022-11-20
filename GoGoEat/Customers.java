@@ -9,7 +9,7 @@ import java.util.Map.Entry;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 
-public class Customers implements UserType, TimeObserver {
+public class Customers implements TimeObserver {
 
     private static LocalDate currDate = LocalDate.now();
     private static LocalTime currTime;
@@ -75,12 +75,12 @@ public class Customers implements UserType, TimeObserver {
         return this.customerState;
     }
 
-    @Override
+    // @Override
     public String getUsername() {
         return username;
     }
 
-    @Override
+    // @Override
     public String getUserId() {
         return CId;
     }

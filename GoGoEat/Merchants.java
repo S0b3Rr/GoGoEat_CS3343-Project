@@ -3,7 +3,7 @@ package GoGoEat;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Merchants implements UserType {
+public class Merchants {
 
     private String username;
     private String staffUserId;
@@ -25,12 +25,12 @@ public class Merchants implements UserType {
         command.exe();
     }
 
-    @Override
+    // @Override
     public String getUsername() {
         return username;
     }
 
-    @Override
+    // @Override
     public String getUserId() {
         return staffUserId;
     }
