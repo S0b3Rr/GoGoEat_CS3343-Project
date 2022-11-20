@@ -7,7 +7,7 @@ public class Payment {
     private Customers customer;
     private PaymentMethod paymentMethod;
     private Commands command;
-    private Restaurants restaurantChosed = null;
+
     private PaymentModulePrompt prompt = new PaymentModulePrompt();
 
     private boolean paymentStatus = false;
@@ -16,9 +16,8 @@ public class Payment {
     private double originalPrice = 0;
     private double discountPrice = 0;
 
-    public Payment(Customers customer, Restaurants restaurant) {
+    public Payment(Customers customer) {
         this.customer = customer;
-        this.restaurantChosed = restaurant;
     }
 
     // UPDATE: Modified on 16 Nov added parameter + originalPrice modified
@@ -127,7 +126,7 @@ public class Payment {
     }
 
     public Restaurants getRestaurantChosed() {
-        return restaurantChosed;
+        return customer.getRestaurantChosed();
     }
 
     public Customers getCustomer() {

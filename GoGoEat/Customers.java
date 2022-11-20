@@ -29,7 +29,9 @@ public class Customers implements TimeObserver {
     private String reservationDayString = "tomorrow";
     // private Table occupiedtable;
 
+    // TODO:
     private Restaurants restaurantChosed;
+
     private HashMap<String, Restaurants> billNumberToRestaurant = null;
     private Multimap<Dish, Restaurants> DishToRestaurant = null;
     private Commands command;

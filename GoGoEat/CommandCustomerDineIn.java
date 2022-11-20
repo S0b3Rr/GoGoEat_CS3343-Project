@@ -24,7 +24,7 @@ public class CommandCustomerDineIn extends CommandCustomer {
             customer.printOrderofCurrentRound();
 
             // About Payment
-            Payment pay = new Payment(customer, customer.getRestaurantChosed());
+            Payment pay = new Payment(customer);
             pay.payProcess(customer.getOrderOfCurrentRound());
         }
     }

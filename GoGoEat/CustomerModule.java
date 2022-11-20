@@ -40,7 +40,6 @@ public class CustomerModule implements UserModule {
 
     static ArrayList<Dish> pendingOrder = new ArrayList<>();
     static ArrayList<Dish> menu = new ArrayList<>();
-    static Restaurants restaurant = null;
 
     @Override
     public void run(String Id) {
@@ -105,8 +104,8 @@ public class CustomerModule implements UserModule {
     // Use when CustomerState is Calculating total overall paid price
     public static void clearOrderNPrice() {
         pendingOrder.clear();
-        if (customer.customerOrdersAccordingToRestaurant(restaurant) != null) {
-            customer.customerOrdersAccordingToRestaurant(restaurant).clear();
+        if (customer.customerOrdersAccordingToRestaurant(customer.getRestaurantChosed()) != null) {
+            customer.customerOrdersAccordingToRestaurant(customer.getRestaurantChosed()).clear();
         }
         clearState();
     }
