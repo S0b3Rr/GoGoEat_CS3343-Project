@@ -2,31 +2,28 @@ package GoGoEat;
 
 import java.util.ArrayList;
 
-public class CommandCustomerReservation implements Commands {
-	
-    private static final TablesManagement tm = TablesManagement.getInstance();
-    private Customers customer;
+public class CommandCustomerReservation extends CommandCustomer {
 
     public CommandCustomerReservation(Customers customer) {
-        this.customer = customer;
+        super(customer);
     }
 
     @Override
     public void exe() throws ExUnableToSetOpenCloseTime, ExTableIdAlreadyInUse, ExTableNotExist,
             ExTimeSlotNotReservedYet, ExTimeSlotAlreadyBeReserved {
-    
-    	// If reserved -> Cannot reserve again
-    	if (customer.checkisReserved()) {
+
+        // If reserved -> Cannot reserve again
+        if (customer.checkisReserved()) {
             System.out.println("\nError! You already has a reservation.");
 
         } else {
-        	// Not reserved
-        	
+            // Not reserved
+
             if (!reservationOperation())
-            	
-            	// Reservation not complete
+
+                // Reservation not complete
                 System.out.println("\nPlease try to reserve again. :-)");
-            
+
             else {
                 System.out.println(customer.getReserveSuccessInfo());
             }
@@ -42,7 +39,7 @@ public class CommandCustomerReservation implements Commands {
         int chosedTableId = 0;
 
         try {
-        	// Show available time slot for booking
+            // Show available time slot for booking
             tm.showReservationTable();
 
             // Input the time slot you want to reserve, format: 11:23-12:22

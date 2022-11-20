@@ -1,10 +1,9 @@
 package GoGoEat;
 
-public class CommandAdminSetOpenCloseHour implements Commands {
-
-    private static final Admin admin = Admin.getInstance();
+public class CommandAdminSetOpenCloseHour extends CommandAdmin {
 
     CommandAdminSetOpenCloseHour() {
+        super();
     }
 
     @Override

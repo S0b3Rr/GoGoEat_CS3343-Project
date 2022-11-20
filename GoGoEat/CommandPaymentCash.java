@@ -1,18 +1,15 @@
 package GoGoEat;
 
-public class CommandPaymentCash implements Commands {
-	
-	private AccountManagement accountManager = AccountManagement.getInstance();
+public class CommandPaymentCash extends CommandPayment {
+
+    private AccountManagement accountManager = AccountManagement.getInstance();
     private static final Database database = Database.getInstance();
-	
-    private double discountPrice;
-    private Payment payment;
+
     private Restaurants restaurantChosed;
     private Customers customer;
 
     public CommandPaymentCash(Payment payment, double discountPrice, Restaurants restaurantChosed, Customers customer) {
-        this.payment = payment;
-        this.discountPrice = discountPrice;
+        super(payment, discountPrice);
         this.restaurantChosed = restaurantChosed;
         this.customer = customer;
     }
@@ -20,23 +17,23 @@ public class CommandPaymentCash implements Commands {
     @Override
     public void exe() throws ExUnableToSetOpenCloseTime, ExTableIdAlreadyInUse, ExTableNotExist,
             ExTimeSlotNotReservedYet, ExCustomersIdNotFound, ExTimeSlotAlreadyBeReserved {
-        
-    	PayFactory payFactory = new CashFactory();
+
+        PayFactory payFactory = new CashFactory();
         PaymentMethod paymentMethod = payFactory.getPay();
-        
+
         boolean result = paymentMethod.pay(discountPrice);
-        
+
         if (result) {
             payment.setPaymentStatus(result);
         }
-        
+
         // Input merchantID to proceed payment
         selectMerchantToPayment();
     }
 
     public void selectMerchantToPayment() {
 
-    	// Print list of merchant of the chosen restaurant 
+        // Print list of merchant of the chosen restaurant
         accountManager.printMerchantOfTheRestaurant(restaurantChosed);
 
         System.out.print("\nInput staff MId: ");
@@ -44,14 +41,14 @@ public class CommandPaymentCash implements Commands {
 
         Merchants merchant = null;
         try {
-        	// Match MID to get merchant instance
+            // Match MID to get merchant instance
             merchant = database.matchMId(staffUserName);
-            
+
             if (merchant.getRestaurantOwned() == restaurantChosed) {
-            	
-            	// Check out by the merchant
+
+                // Check out by the merchant
                 merchant.checkOutbyMerchant(customer);
-                
+
             } else {
                 System.out.println("No merchant found! Please try again.");
             }

@@ -1,17 +1,16 @@
 package GoGoEat;
 
-public class CommandAdminAddRestaurant implements Commands{
-	
-    private static final Database database = Database.getInstance();
-    private static final Admin admin = Admin.getInstance();
-    
-    CommandAdminAddRestaurant(){}
-    
+public class CommandAdminAddRestaurant extends CommandAdmin {
+
+    CommandAdminAddRestaurant() {
+        super();
+    }
+
     @Override
     public void exe() {
         Restaurants temp = addNewRestaurant();
-        admin.addRestaurant(temp);
-        database.showListOfRestaurants();       
+        super.admin.addRestaurant(temp);
+        database.showListOfRestaurants();
     }
 
     public Restaurants addNewRestaurant() {

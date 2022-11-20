@@ -1,17 +1,16 @@
 package GoGoEat;
 
-public class CommandAdminRemoveTable implements Commands {
-
-    private static final Admin admin = Admin.getInstance();
+public class CommandAdminRemoveTable extends CommandAdmin {
 
     CommandAdminRemoveTable() {
+        super();
     }
 
     @Override
     public void exe() throws ExTableIdAlreadyInUse, ExTableNotExist {
 
-    	// Delete table with TableId
-    	
+        // Delete table with TableId
+
         System.out.print("\nPlease input the TableId to delete table: ");
         String input;
         int tableId;

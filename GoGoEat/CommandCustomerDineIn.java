@@ -3,17 +3,13 @@ package GoGoEat;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class CommandCustomerDineIn implements Commands {
+public class CommandCustomerDineIn extends CommandCustomer {
 
-    private static final TablesManagement tm = TablesManagement.getInstance();
-    private static final Database database = Database.getInstance();
-
-    private static Customers customer;
     private Restaurants restaurant = null;
     private ArrayList<Dish> menu = new ArrayList<>();
 
     public CommandCustomerDineIn(Customers commandingCustomer) {
-        customer = commandingCustomer;
+        super(commandingCustomer);
     }
 
     @Override
@@ -42,7 +38,8 @@ public class CommandCustomerDineIn implements Commands {
 
         // if no reservation found OR has reservation but not time to dine (from
         // reserve) yet
-        if (!customer.checkisReserved() || (customer.checkisReserved() && !customer.isReserveTime())) {
+        if (!customer.checkisReserved()
+                || (customer.checkisReserved() && !customer.isReserveTime())) {
 
             // Show all available table with capacity
             tm.showAvailableTables();
@@ -163,7 +160,7 @@ public class CommandCustomerDineIn implements Commands {
             }
 
             if (select == 1) {
-                tm.setWaitingTables(database.getCustomerCid(customer), result);
+                tm.setWaitingTables(super.database.getCustomerCid(customer), result);
             } else if (select == 2) {
                 break;
             }
@@ -191,7 +188,7 @@ public class CommandCustomerDineIn implements Commands {
             }
 
             if (select == 1) {
-                tm.setWaitingTables(database.getCustomerCid(customer), result);
+                tm.setWaitingTables(super.database.getCustomerCid(customer), result);
             } else if (select == 2) {
 
                 // Set table from available to occupied
@@ -272,13 +269,13 @@ public class CommandCustomerDineIn implements Commands {
         customer.clearPendingOrder();
 
         // Show all restaurants
-        database.outputRestaurant();
+        super.database.outputRestaurant();
 
         String input = "";
 
         // Match string input with arraylist to find the restaurant in list
         do {
-            ArrayList<Restaurants> availableRestaurants = database.getListofRestaurants();
+            ArrayList<Restaurants> availableRestaurants = super.database.getListofRestaurants();
             System.out.print("\nPlease choose the restaurant to order: ");
             try {
                 input = Main.in.next("\nPlease choose the restaurant to order: ");
