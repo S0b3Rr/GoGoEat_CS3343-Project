@@ -7,6 +7,7 @@ class Main {
     public static final InputScanner in = InputScanner.getInstance();
     private static final Database database = Database.getInstance();
     private static final AccountManagement accManager = AccountManagement.getInstance();
+    private static UserModule module = null;
 
     public static void main(String[] args) throws ExTableIdAlreadyInUse, ExTableNotExist, ExTimeSlotAlreadyBeReserved,
             ExTimeSlotNotReservedYet, ExUnableToSetOpenCloseTime, ExCustomersIdNotFound {
@@ -35,7 +36,7 @@ class Main {
         String input = null;
 
         do {
-        	// Print all active accounts
+            // Print all active accounts
             accManager.printAllActiveAccounts();
 
             try {
@@ -44,13 +45,13 @@ class Main {
                 System.out.print("\nPlease select your operation: ");
                 input = Main.in.next("\nPlease select your operation: ");
                 select = Integer.parseInt(input);
-                
+
                 if (select == 1) {
                     login();
                 } else if (select == 2) {
                     // register -> Come back here after successful registration
                     success = register();
-    
+
                 } else if (select == 3) {
                     success = deleteAcc();// delete account
                 }
@@ -64,7 +65,7 @@ class Main {
 
     }
 
-    // Login, get userId then return boolean  
+    // Login, get userId then return boolean
     public static boolean login() throws ExTableNotExist, ExTimeSlotAlreadyBeReserved, ExTimeSlotNotReservedYet,
             ExUnableToSetOpenCloseTime, ExTableIdAlreadyInUse, ExCustomersIdNotFound {
 
@@ -82,10 +83,10 @@ class Main {
         String ID = accManager.login(username, password);
 
         if (ID != null) {
-            
-        	// Identify which userType belong to the login account, then run Module
-            UserModule module = accManager.distinguishMerchantandCustomer(ID);
-            
+
+            // Identify which userType belong to the login account, then run Module
+            module = accManager.distinguishMerchantandCustomer(ID);
+
             if (module != null) {
                 module.run(ID);
                 return true;
@@ -168,7 +169,8 @@ class Main {
             try {
                 System.out.print(
                         "\nPlease choose the type of account to register [1 Customer | 2 Merchant | 3 Cancel]: ");
-                input = Main.in.next("\nPlease choose the type of account to register [1 Customer | 2 Merchant | 3 Cancel]: ");
+                input = Main.in
+                        .next("\nPlease choose the type of account to register [1 Customer | 2 Merchant | 3 Cancel]: ");
                 select = Integer.parseInt(input);
                 if (select == 1) {
                     registerFinished = registerCustomer();
