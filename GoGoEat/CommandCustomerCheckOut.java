@@ -14,6 +14,7 @@ public class CommandCustomerCheckOut extends CommandCustomer {
             throws ExUnableToSetOpenCloseTime, ExTableIdAlreadyInUse, ExTableNotExist, ExTimeSlotNotReservedYet {
 
         // Checkout by customer themselves
+        TablesManagement tm = TablesManagement.getInstance();
         tm.checkOutByCustomer(customer.getOccupiedTableId());
         customer.clearOccupiedTableId();
 

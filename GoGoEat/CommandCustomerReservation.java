@@ -41,6 +41,7 @@ public class CommandCustomerReservation extends CommandCustomer {
 
         try {
             // Show available time slot for booking
+            TablesManagement tm = TablesManagement.getInstance();
             tm.showReservationTable();
 
             // Input the time slot you want to reserve, format: 11:23-12:22

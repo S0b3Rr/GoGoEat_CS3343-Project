@@ -13,7 +13,6 @@ public class Customers implements TimeObserver {
 
     private static LocalDate currDate = LocalDate.now();
     private static LocalTime currTime;
-    private static final TablesManagement tm = TablesManagement.getInstance();
 
     private String username;
     protected String password;
@@ -210,6 +209,7 @@ public class Customers implements TimeObserver {
     public boolean isReserveTime() {
         boolean isTime = false;
 
+        TablesManagement tm = TablesManagement.getInstance();
         ArrayList<Table> tables = tm.getReservedTablesfromId(reserve.getReservedTableIDs());
 
         for (Table t : tables) {

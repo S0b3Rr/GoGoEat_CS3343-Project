@@ -39,6 +39,7 @@ public class CommandCustomerDineIn extends CommandCustomer {
                 || (customer.checkisReserved() && !customer.isReserveTime())) {
 
             // Show all available table with capacity
+            TablesManagement tm = TablesManagement.getInstance();
             tm.showAvailableTables();
 
             // Input number of people to dine in
@@ -99,6 +100,7 @@ public class CommandCustomerDineIn extends CommandCustomer {
 
                 if (select == 1) {
                     // Walk in
+                    TablesManagement tm = TablesManagement.getInstance();
                     ArrayList<Integer> checkinTableId = tm.setWalkInStatus(result);
 
                     // TODO: Separate into two method
@@ -125,6 +127,7 @@ public class CommandCustomerDineIn extends CommandCustomer {
          */
 
         // Compute Recommended Result
+        TablesManagement tm = TablesManagement.getInstance();
         ArrayList<Integer> recommendedResult = tm.recommendedArrangementAccordingToWaitingTime(numOfPeople);
 
         boolean success = false;
@@ -157,6 +160,7 @@ public class CommandCustomerDineIn extends CommandCustomer {
             }
 
             if (select == 1) {
+                TablesManagement tm = TablesManagement.getInstance();
                 tm.setWaitingTables(super.database.getCustomerCid(customer), result);
             } else if (select == 2) {
                 break;
@@ -184,6 +188,7 @@ public class CommandCustomerDineIn extends CommandCustomer {
                 System.out.println("Error! Wrong input for selection! Please input an integer!");
             }
 
+            TablesManagement tm = TablesManagement.getInstance();
             if (select == 1) {
                 tm.setWaitingTables(super.database.getCustomerCid(customer), result);
             } else if (select == 2) {
@@ -213,6 +218,7 @@ public class CommandCustomerDineIn extends CommandCustomer {
 
         for (Integer tableId : tableIds) {
             try {
+                TablesManagement tm = TablesManagement.getInstance();
                 tm.reserverCheckIn(tableId, ts, cId);
             } catch (Exception e) {
                 System.out.println(e.getMessage());
