@@ -2,9 +2,6 @@ package GoGoEat;
 
 public class CommandPaymentCash extends CommandPayment {
 
-    private AccountManagement accountManager = AccountManagement.getInstance();
-    private static final Database database = Database.getInstance();
-
     private Restaurants restaurantChosed;
     private Customers customer;
 
@@ -34,7 +31,7 @@ public class CommandPaymentCash extends CommandPayment {
     public void selectMerchantToPayment() {
 
         // Print list of merchant of the chosen restaurant
-        accountManager.printMerchantOfTheRestaurant(restaurantChosed);
+        AccountManagement.printMerchantOfTheRestaurant(restaurantChosed);
 
         System.out.print("\nInput staff MId: ");
         String staffUserName = Main.in.next("\nInput staff MId: ");
