@@ -17,8 +17,7 @@ public class CommandAdminCheckCustomerOrder extends CommandAdmin {
         System.out.print("\nPlease input the CustomerId to check order: ");
         String customerId = Main.in.next("\nPlease input the CustomerId to check order: ");
         try {
-            Customers customer = database.matchCId(customerId);
-            admin.checkCustomerOrder(customer);
+            database.matchCId(customerId).printAllOrders();
         } catch (NullPointerException e) {
             throw new ExCustomersIdNotFound(customerId);
         }

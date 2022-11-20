@@ -15,7 +15,7 @@ public class CommandAdminRemoveRestaurant extends CommandAdmin {
             System.out.println("No such restaurant. Please check again.");
         } else {
             // exist -> delete instance from Database
-            admin.deleteRestaurant(temp);
+            deleteRestaurant(temp);
         }
 
         // Show updated list after deleting
@@ -34,6 +34,11 @@ public class CommandAdminRemoveRestaurant extends CommandAdmin {
         restaurant = database.matchRestaurant(rName);
 
         return restaurant;
+    }
+
+    private void deleteRestaurant(Restaurants res) {
+        database.removeFromlistOfRestaurants(res);
+        System.out.println("Delete restaurant success.");
     }
 
 }
