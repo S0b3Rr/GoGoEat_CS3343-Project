@@ -2,13 +2,8 @@ package GoGoEat;
 
 public class CommandPaymentCash extends CommandPayment {
 
-    private Restaurants restaurantChosed;
-    private Customers customer;
-
-    public CommandPaymentCash(Payment payment, double discountPrice, Restaurants restaurantChosed, Customers customer) {
+    public CommandPaymentCash(Payment payment, double discountPrice, Customers customer) {
         super(payment, discountPrice);
-        this.restaurantChosed = restaurantChosed;
-        this.customer = customer;
     }
 
     @Override
@@ -31,7 +26,7 @@ public class CommandPaymentCash extends CommandPayment {
     public void selectMerchantToPayment() {
 
         // Print list of merchant of the chosen restaurant
-        AccountManagement.printMerchantOfTheRestaurant(restaurantChosed);
+        AccountManagement.printMerchantOfTheRestaurant(payment.getRestaurantChosed());
 
         System.out.print("\nInput staff MId: ");
         String staffUserName = Main.in.next("\nInput staff MId: ");
@@ -41,10 +36,10 @@ public class CommandPaymentCash extends CommandPayment {
             // Match MID to get merchant instance
             merchant = database.matchMId(staffUserName);
 
-            if (merchant.getRestaurantOwned() == restaurantChosed) {
+            if (merchant.getRestaurantOwned() == payment.getRestaurantChosed()) {
 
                 // Check out by the merchant
-                merchant.checkOutbyMerchant(customer);
+                merchant.checkOutbyMerchant(payment.getCustomer());
 
             } else {
                 System.out.println("No merchant found! Please try again.");
