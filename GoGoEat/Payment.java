@@ -107,7 +107,7 @@ public class Payment {
             isNoOrder = true;
 
             // CHECKOUT
-            CommandCustomerCheckOut cmdCheckout = new CommandCustomerCheckOut(customer, outputString);
+            Commands cmdCheckout = new CommandCustomerCheckOut(customer, outputString);
             customer.setCommand(cmdCheckout);
             customer.callCommand();
         }

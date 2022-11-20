@@ -25,7 +25,7 @@ public class CommandCustomerCancelReservation extends CommandCustomer {
         }
     }
 
-    public boolean cancelReservation() throws ExTableNotExist, ExTimeSlotNotReservedYet {
+    private boolean cancelReservation() throws ExTableNotExist, ExTimeSlotNotReservedYet {
         customer.cancelReservation();
         customer.clearReservation();
 

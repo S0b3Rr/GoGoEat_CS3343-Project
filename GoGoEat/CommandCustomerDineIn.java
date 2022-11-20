@@ -32,7 +32,7 @@ public class CommandCustomerDineIn extends CommandCustomer {
         }
     }
 
-    public boolean dineInOperation() {
+    private boolean dineInOperation() {
         boolean success = false;
         String str;
 
@@ -79,7 +79,7 @@ public class CommandCustomerDineIn extends CommandCustomer {
 
     }
 
-    public boolean directWalkIn(ArrayList<Integer> result) {
+    private boolean directWalkIn(ArrayList<Integer> result) {
         // Prompt message : 1. dine-in 2. leave
         int select = 0;
         String str = "";
@@ -119,7 +119,7 @@ public class CommandCustomerDineIn extends CommandCustomer {
         return success;
     }
 
-    public boolean waitQueue(int numOfPeople, ArrayList<Integer> result) {
+    private boolean waitQueue(int numOfPeople, ArrayList<Integer> result) {
 
         /*
          * If no suitable table arrangement -> Algorithm to compute table assignment
@@ -142,7 +142,7 @@ public class CommandCustomerDineIn extends CommandCustomer {
         return success;
     }
 
-    public void noRecommendedResultAndQueue(ArrayList<Integer> result) {
+    private void noRecommendedResultAndQueue(ArrayList<Integer> result) {
         // No Recommended Arrangement of Table -> 1. Queue / 2. Leave
         int select = 0;
         String str = "";
@@ -167,7 +167,7 @@ public class CommandCustomerDineIn extends CommandCustomer {
         } while (select != 1 && select != 2);
     }
 
-    public boolean hasRecommendedResult(ArrayList<Integer> result) {
+    private boolean hasRecommendedResult(ArrayList<Integer> result) {
 
         // Has recommended Arrangement of Table -> 1. Queue / 2. Walkin / 3. Leave
 
@@ -206,7 +206,7 @@ public class CommandCustomerDineIn extends CommandCustomer {
         return success;
     }
 
-    public boolean reserveWalkIn(ArrayList<Integer> tableIds, TimeSlot ts, String cId) {
+    private boolean reserveWalkIn(ArrayList<Integer> tableIds, TimeSlot ts, String cId) {
 
         // Customer reserved -> Check-in table
 
@@ -253,7 +253,7 @@ public class CommandCustomerDineIn extends CommandCustomer {
 
     }
 
-    public void ordering() {
+    private void ordering() {
         /*
          * CHOOSE RESTAURANTS
          * 1. Show all available restaurants
@@ -304,7 +304,7 @@ public class CommandCustomerDineIn extends CommandCustomer {
         confirmOrder();
     }
 
-    public void confirmOrder() {
+    private void confirmOrder() {
         /*
          * 1. Confirm Order -> Break
          * 2. Not confirm Order
@@ -376,7 +376,7 @@ public class CommandCustomerDineIn extends CommandCustomer {
         customer.updateBillNumberToRestaurant(billno, restaurant);
     }
 
-    public void addDishtoPending(String perviousString) {
+    private void addDishtoPending(String perviousString) {
         // Can Input multiple dishes
 
         String strDish;
@@ -398,7 +398,7 @@ public class CommandCustomerDineIn extends CommandCustomer {
         }
     }
 
-    public void removeDishfromPending() {
+    private void removeDishfromPending() {
 
         // Output original pending order
         customer.outputPendingDish("\nYour pending orders: ");

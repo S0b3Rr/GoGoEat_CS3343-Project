@@ -32,7 +32,7 @@ public class CommandCustomerReservation extends CommandCustomer {
 
     }
 
-    public boolean reservationOperation() throws ExTableNotExist, ExTimeSlotAlreadyBeReserved {
+    private boolean reservationOperation() throws ExTableNotExist, ExTimeSlotAlreadyBeReserved {
 
         ArrayList<Integer> chosedTableIds = new ArrayList<>();
         String reserveTime = null, chosedTable = null;

@@ -23,7 +23,7 @@ public class CommandPaymentCash extends CommandPayment {
         selectMerchantToPayment();
     }
 
-    public void selectMerchantToPayment() {
+    private void selectMerchantToPayment() {
 
         // Print list of merchant of the chosen restaurant
         AccountManagement.printMerchantOfTheRestaurant(payment.getRestaurantChosed());

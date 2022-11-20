@@ -22,7 +22,7 @@ public class CommandAdminRemoveRestaurant extends CommandAdmin {
         database.showListOfRestaurants();
     }
 
-    public Restaurants removeRestaurant() {
+    private Restaurants removeRestaurant() {
 
         String rName = "";
         Restaurants restaurant = null;

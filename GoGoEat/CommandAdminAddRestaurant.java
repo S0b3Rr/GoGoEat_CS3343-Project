@@ -13,7 +13,7 @@ public class CommandAdminAddRestaurant extends CommandAdmin {
         database.showListOfRestaurants();
     }
 
-    public Restaurants addNewRestaurant() {
+    private Restaurants addNewRestaurant() {
 
         System.out.print("\nPlease input the name of the new Restaurant: ");
         String rName = Main.in.nextLine("\nPlease input the name of the new Restaurant: ");
