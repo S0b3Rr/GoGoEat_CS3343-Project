@@ -1,5 +1,6 @@
 package GoGoEat;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class CommandCustomerReservation extends CommandCustomer {
@@ -55,7 +56,8 @@ public class CommandCustomerReservation extends CommandCustomer {
                 chosedTableId = Integer.parseInt(s);
                 chosedTableIds.add(chosedTableId);
             }
-            customer.setReserve(reserveTime, chosedTableIds);
+            Reservation r = setReserve(customer.getID(), reserveTime, chosedTableIds, ManualClock.getDate());
+            customer.setReserve(r);
 
         } catch (Exception e) {
             System.out.println("Error! Please try again!");
@@ -65,6 +67,21 @@ public class CommandCustomerReservation extends CommandCustomer {
         // indicator for successful booking
         return customer.checkisReserved();
 
+    }
+
+    private Reservation setReserve(String CId, String timeslotString, ArrayList<Integer> desiredTableIds,
+            LocalDate currDate) {
+        try {
+            return new Reservation(CId, timeslotString, desiredTableIds, currDate.plusDays(1));
+        } catch (ExTimeFormatInvalid e) {
+            System.out.println(e.getMessage());
+        } catch (ExTimeSlotInvalid e) {
+            System.out.println(e.getMessage());
+            customer.clearReservation();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
 
 }

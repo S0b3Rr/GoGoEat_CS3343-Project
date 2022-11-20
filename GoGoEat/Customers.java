@@ -132,17 +132,8 @@ public class Customers implements UserType, TimeObserver {
     }
 
     // Reserve
-    public void setReserve(String timeslotString, ArrayList<Integer> desiredTableIds) {
-        try {
-            this.reserve = new Reservation(CId, timeslotString, desiredTableIds, currDate.plusDays(1));
-        } catch (ExTimeFormatInvalid e) {
-            System.out.println(e.getMessage());
-        } catch (ExTimeSlotInvalid e) {
-            System.out.println(e.getMessage());
-            this.clearReservation();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+    public void setReserve(Reservation r) {
+        this.reserve = r;
     }
 
     public ArrayList<Integer> getReservedTableIDs() {
@@ -211,16 +202,12 @@ public class Customers implements UserType, TimeObserver {
         return (reserve != null);
     }
 
-    // public Reservation getReserve() {
-    // return reserve;
-    // }
+    public Reservation getReservation() {
+        return reserve;
+    }
 
     public TimeSlot getReservationTimeSlot() {
         return this.reserve.getReservedTimeSlot();
-    }
-
-    public void cancelReservation() throws ExTableNotExist, ExTimeSlotNotReservedYet {
-        this.reserve.cancel();
     }
 
     public boolean isReserveTime() {
