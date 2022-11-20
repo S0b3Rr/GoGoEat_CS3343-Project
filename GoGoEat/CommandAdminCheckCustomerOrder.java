@@ -20,6 +20,8 @@ public class CommandAdminCheckCustomerOrder extends CommandAdmin {
             database.matchCId(customerId).printAllOrders();
         } catch (NullPointerException e) {
             throw new ExCustomersIdNotFound(customerId);
+        } catch (ExCustomersIdNotFound e) {
+            System.out.println(e.getMessage());
         }
 
     }

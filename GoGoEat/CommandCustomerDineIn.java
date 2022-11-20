@@ -5,9 +5,6 @@ import java.util.Collections;
 
 public class CommandCustomerDineIn extends CommandCustomer {
 
-    private Restaurants restaurant = null;
-    private ArrayList<Dish> menu = new ArrayList<>();
-
     public CommandCustomerDineIn(Customers commandingCustomer) {
         super(commandingCustomer);
     }
@@ -27,7 +24,7 @@ public class CommandCustomerDineIn extends CommandCustomer {
             customer.printOrderofCurrentRound();
 
             // About Payment
-            Payment pay = new Payment(customer, restaurant);
+            Payment pay = new Payment(customer, customer.getRestaurantChosed());
             pay.payProcess(customer.getOrderOfCurrentRound());
         }
     }
@@ -280,25 +277,24 @@ public class CommandCustomerDineIn extends CommandCustomer {
             try {
                 input = Main.in.next("\nPlease choose the restaurant to order: ");
                 int idx = Integer.parseInt(input);
-                restaurant = availableRestaurants.get(idx - 1);
-                customer.chooseRestaurant(restaurant);
+                customer.chooseRestaurant(availableRestaurants.get(idx - 1));
             } catch (NumberFormatException e) {
                 System.out.println("Error! Wrong input for selection! Please input an integer!");
             }
 
-        } while (restaurant == null);
+        } while (customer.getRestaurantChosed() == null);
 
         System.out.println("\nYou have chosed restaurant " + customer.getRestaurantChosed() + ".");
 
         // Show menu of the chosen restaurant
-        menu = restaurant.getMenu();
 
         // Print menu of the restaurant
-        restaurant.printMenu();
+        customer.getRestaurantChosed().printMenu();
 
         // customer ordering -> add to pendingOrder
         addDishtoPending(
-                "\nPlease choose from the menu of restaurant " + restaurant.toString() + " (separate by a COMMA): ");
+                "\nPlease choose from the menu of restaurant " + customer.getRestaurantChosed().toString()
+                        + " (separate by a COMMA): ");
 
         // Check if confirm order, if confirm order add into customer orders
         confirmOrder();
@@ -352,7 +348,7 @@ public class CommandCustomerDineIn extends CommandCustomer {
                 } else if (addDel == 1) {
 
                     // Print menu of restaurant choose
-                    restaurant.printMenu();
+                    customer.getRestaurantChosed().printMenu();
 
                     // Add new dish to pending order
                     addDishtoPending("\nInput the dish number to add: (separate by a COMMA): ");
@@ -366,14 +362,14 @@ public class CommandCustomerDineIn extends CommandCustomer {
         } while (!confirmOrder);
 
         // Official order
-        customer.updateOrder(restaurant);
+        customer.updateOrder(customer.getRestaurantChosed());
 
         // Generate New Bill number for payment
         customer.setBillNo();
 
         // Pass new billNumber to reference Map: Billno <-> Restaurant
         String billno = customer.getBillno();
-        customer.updateBillNumberToRestaurant(billno, restaurant);
+        customer.updateBillNumberToRestaurant(billno, customer.getRestaurantChosed());
     }
 
     private void addDishtoPending(String perviousString) {
@@ -394,7 +390,7 @@ public class CommandCustomerDineIn extends CommandCustomer {
 
         // Add input to pending order
         for (int i = 0; i < tokens.length; i++) {
-            customer.addPendingOrder(menu.get(idx[i] - 1));
+            customer.addPendingOrder(customer.getRestaurantChosed().getMenu().get(idx[i] - 1));
         }
     }
 

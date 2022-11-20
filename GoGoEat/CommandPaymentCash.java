@@ -46,6 +46,7 @@ public class CommandPaymentCash extends CommandPayment {
             }
         } catch (NullPointerException ex) {
             System.out.println("No merchant found! Please try again.");
+            selectMerchantToPayment();
         }
     }
 }

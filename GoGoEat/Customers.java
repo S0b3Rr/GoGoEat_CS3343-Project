@@ -20,7 +20,6 @@ public class Customers implements UserType, TimeObserver {
     private String CId;
     private String billno;
     private double billAmount;
-    private double discount;
     protected CustomerState customerState;
 
     private Reservation reserve;
@@ -74,10 +73,6 @@ public class Customers implements UserType, TimeObserver {
 
     public CustomerState getState() {
         return this.customerState;
-    }
-
-    public void setdiscount(double discount) {
-        this.discount = discount;
     }
 
     @Override
