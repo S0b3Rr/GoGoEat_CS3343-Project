@@ -288,6 +288,20 @@ public class Customers implements TimeObserver {
         }
     }
 
+    // Use when CustomerState is Calculating total overall paid price
+    public void clearOrderNPrice() {
+        pendingOrder.clear();
+        if (customerOrdersAccordingToRestaurant(getRestaurantChosed()) != null) {
+            customerOrdersAccordingToRestaurant(getRestaurantChosed()).clear();
+        }
+        clearState();
+    }
+
+    // Clear State -> Change state to VIP as default
+    public void clearState() {
+        setState(new CustomerVIPstate());
+    }
+
     // get ArrayList of customer's official-confirmed orders
     // get dish with respect to restaurant
     public ArrayList<Dish> customerOrdersAccordingToRestaurant(Restaurants restaurant) {
