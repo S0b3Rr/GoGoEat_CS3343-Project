@@ -635,7 +635,7 @@ public class TablesManagement implements TimeObserver {
         }
         t.updatetmrTimeslots(tmrTimeSlots);
 
-        System.out.println(t.getTmrReservationTimeSlot().getAvailableSlots());
+        // System.out.println(t.getTmrReservationTimeSlot().getAvailableSlots());
     }
 
     public int returnAvailableTableNumWithCapacity(int tableCapacityType) {
