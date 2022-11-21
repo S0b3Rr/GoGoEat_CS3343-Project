@@ -300,9 +300,13 @@ public class CommandCustomerDineIn extends CommandCustomer {
         customer.getRestaurantChosed().printMenu();
 
         // customer ordering -> add to pendingOrder
-        addDishtoPending(
-                "\nPlease choose from the menu of restaurant " + customer.getRestaurantChosed().toString()
-                        + " (separate by a COMMA): ");
+        try {
+            addDishtoPending(
+                    "\nPlease choose from the menu of restaurant " + customer.getRestaurantChosed().toString()
+                            + " (separate by a COMMA): ");
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input!!");
+        }
 
         // Check if confirm order, if confirm order add into customer orders
         confirmOrder();
