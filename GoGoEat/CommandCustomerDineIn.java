@@ -277,7 +277,7 @@ public class CommandCustomerDineIn extends CommandCustomer {
         String input = "";
 
         // Match string input with arraylist to find the restaurant in list
-        do {
+        while (customer.getRestaurantChosed() == null) {
             ArrayList<Restaurants> availableRestaurants = super.database.getListofRestaurants();
             System.out.print("\nPlease choose the restaurant to order: ");
             try {
@@ -286,9 +286,11 @@ public class CommandCustomerDineIn extends CommandCustomer {
                 customer.chooseRestaurant(availableRestaurants.get(idx - 1));
             } catch (NumberFormatException e) {
                 System.out.println("Error! Wrong input for selection! Please input an integer!");
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("Please input the valid restaurant number!!!");
             }
 
-        } while (customer.getRestaurantChosed() == null);
+        }
 
         System.out.println("\nYou have chosed restaurant " + customer.getRestaurantChosed() + ".");
 

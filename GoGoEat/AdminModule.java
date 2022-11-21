@@ -34,7 +34,7 @@ public class AdminModule implements UserModule {
         String input = "";
 
         while (select != 8) {
-
+            select = 0;
             prompt.promptOptionStart();
 
             while (select == 0) {

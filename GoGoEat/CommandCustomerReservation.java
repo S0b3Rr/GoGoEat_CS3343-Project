@@ -79,6 +79,8 @@ public class CommandCustomerReservation extends CommandCustomer {
         } catch (ExTimeSlotInvalid e) {
             System.out.println(e.getMessage());
             customer.clearReservation();
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Invalid Time Slot!!");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
