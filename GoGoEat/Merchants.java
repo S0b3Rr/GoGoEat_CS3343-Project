@@ -81,8 +81,12 @@ public class Merchants {
         ArrayList<Integer> idx = new ArrayList<>();
 
         // String to integer (index)
-        for (int i = 0; i < tokens.length; i++) {
-            idx.add(Integer.parseInt(tokens[i]));
+        try {
+            for (int i = 0; i < tokens.length; i++) {
+                idx.add(Integer.parseInt(tokens[i]));
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Please input integer list!");
         }
 
         // Add input to dish list pending to order
