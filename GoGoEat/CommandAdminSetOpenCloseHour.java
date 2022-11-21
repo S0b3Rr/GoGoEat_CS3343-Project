@@ -35,6 +35,8 @@ public class CommandAdminSetOpenCloseHour extends CommandAdmin {
             setOpenCloseTime = tm.setOpenAndCloseTime(timeString);
         } catch (ExTimeFormatInvalid e) {
             System.out.println(e.getMessage());
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Wrong format of time! Format should be xx:xx-xx:xx!");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

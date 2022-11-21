@@ -20,6 +20,7 @@ public class AccountManagement {
     private static final Database database = Database.getInstance();
     private GenerateId genCId = GenerateCustomerId.getInstance();
     private GenerateId genMId = GenerateMerchantId.getInstance();
+    private Commands command;
 
     protected AccountManagement() {
     }
@@ -259,4 +260,14 @@ public class AccountManagement {
         }
         return null;
     }
+
+    public void setCommand(Commands command) {
+        this.command = command;
+    }
+
+    public void callCommand() throws ExUnableToSetOpenCloseTime, ExTableIdAlreadyInUse, ExTableNotExist,
+            ExTimeSlotNotReservedYet, ExCustomersIdNotFound, ExTimeSlotAlreadyBeReserved {
+        command.exe();
+    }
+
 }
