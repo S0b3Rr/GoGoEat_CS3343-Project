@@ -82,22 +82,25 @@ public class Merchants {
 
         // String to integer (index)
         try {
+
             for (int i = 0; i < tokens.length; i++) {
                 idx.add(Integer.parseInt(tokens[i]));
             }
+
+            // Add input to dish list pending to order
+            ArrayList<Dish> menuModified = new ArrayList<>(restaurantOwned.getMenu());
+
+            Collections.sort(idx, Collections.reverseOrder());
+            for (int i : idx) {
+                menuModified.remove(i - 1);
+            }
+
+            restaurantOwned.updateMenu(menuModified);
+            System.out.println("Delete Dish success.");
+
         } catch (NumberFormatException e) {
             System.out.println("Please input integer list!");
         }
-
-        // Add input to dish list pending to order
-        ArrayList<Dish> menuModified = new ArrayList<>(restaurantOwned.getMenu());
-
-        Collections.sort(idx, Collections.reverseOrder());
-        for (int i : idx) {
-            menuModified.remove(i - 1);
-        }
-        restaurantOwned.updateMenu(menuModified);
-        System.out.println("Delete Dish success.");
 
     }
 
