@@ -58,8 +58,13 @@ public class Merchants {
 
         System.out.print("Dish Price: ");
 
-        input = Main.in.next("Dish Price: ");
-        dishPrice = Double.parseDouble(input);
+        try {
+            input = Main.in.next("Dish Price: ");
+            dishPrice = Double.parseDouble(input);
+        } catch (NumberFormatException e) {
+            System.out.println("Please input a double.");
+            addDish();
+        }
 
         addtoMenu(dishName, dishPrice);
     }

@@ -16,13 +16,14 @@ public class CommandAdminRemoveRestaurant extends CommandAdmin {
         } else {
             // exist -> delete instance from Database
             deleteRestaurant(temp);
-        }
 
-        // Show updated list after deleting
-        database.showListOfRestaurants();
+            // Show updated list after deleting
+            database.showListOfRestaurants();
+        }
     }
 
     private Restaurants removeRestaurant() {
+        database.outputRestaurant();
 
         String rName = "";
         Restaurants restaurant = null;

@@ -18,6 +18,8 @@ public class CommandMerchantCheckOrder extends CommandMerchant {
             Customers customer = database.matchCId(CId);
             merchant.checkOrder(customer, merchant.getRestaurantOwned());
 
+        } catch (ExCustomersIdNotFound e) {
+            System.out.println(e.getMessage());
         } catch (NullPointerException ex) {
             System.out.println("No Customer instance found!");
         }

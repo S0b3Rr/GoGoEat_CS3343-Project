@@ -1,7 +1,5 @@
 package GoGoEat;
 
-import java.util.ArrayList;
-
 public class CustomerModule implements UserModule {
     /*
      * RunDown：
